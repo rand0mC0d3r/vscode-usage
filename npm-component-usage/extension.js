@@ -16,20 +16,31 @@ function activate(context) {
 	console.log('Congratulations, your extension "npm-component-usage" is now active!');
 
 
+	// // The command has been defined in the package.json file
+	// // Now provide the implementation of the command with  registerCommand
+	// // The commandId parameter must match the command field in package.json
+	// let disposable = vscode.commands.registerCommand('npm-component-usage.helloWorld', function () {
+	// 	// The code you place here will be executed every time your command is executed
+
+	// 	const activeDocumentTitle = vscode.window.activeTextEditor.document.getText()
+	// 	if (['.js', '.jsx', '.ts', '.tsx'].some(i => activeDocumentTitle.includes(i))) {
+	// 		vscode.window.showInformationMessage(`Active file: ${activeDocumentTitle}`);
+	// 	}
+	// });
 
 
 	vscode.window.onDidChangeActiveTextEditor((editor) => {
-		// const fileList = vscode.workspace.findFiles('**​/*.js', '**​/node_modules/**', 10);
-		const activeDocumentTitle = vscode.window.activeTextEditor.document.getText()
+		const activeDocumentTitle = vscode.window.activeTextEditor.document.fileName
 		if (['.js', '.jsx', '.ts', '.tsx'].some(i => activeDocumentTitle.includes(i))) {
-			// const editor = vscode.workspace.findFiles('**​/*.js', '**​/node_modules/**', 10);
+
 			vscode.window.showInformationMessage(`Active file: ${activeDocumentTitle}`);
 		}
-		// vscode.window.showInformationMessage(`ff ${JSON.stringify('')}`);
 
 	}, null, subscriptions);
 
+
 	context.subscriptions.push(vscode.Disposable.from(...subscriptions));
+	// context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated

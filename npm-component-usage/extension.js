@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const fs = require('fs');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -30,11 +31,27 @@ function activate(context) {
 
 
 	vscode.window.onDidChangeActiveTextEditor((editor) => {
-		const activeDocumentTitle = vscode.window.activeTextEditor.document.fileName
-		if (['.js', '.jsx', '.ts', '.tsx'].some(i => activeDocumentTitle.includes(i))) {
+		const activeDocumentTitle = vscode.window.activeTextEditor.document.fileName.split('/')
+		const fileName = activeDocumentTitle[activeDocumentTitle.length - 1]
+		const folderName = activeDocumentTitle[activeDocumentTitle.length - 2]
 
-			vscode.window.showInformationMessage(`Active file: ${activeDocumentTitle}`);
+		if (['.js', '.jsx', '.ts', '.tsx'].some(i => fileName.includes(i))) {
+			vscode.window.showInformationMessage(`Active folder: ${folderName} file: ${fileName}`);
 		}
+
+		vscode.workspace.findFiles('src/**/*').then(res => {
+			res
+				.filter(resItem => !resItem.path.includes('node_modules'))
+				.map(resItem => {
+					const content = fs.readFileSync(resItem.path, 'utf8')
+					if (fileName.includes('index')) {
+						content.includes(`/${folderName}'`) && console.log(resItem.path)
+					} else {
+						content.includes(`/${fileName}'`) && console.log(resItem.path)
+					}
+					// console.log(resItem.path)
+				})
+		})
 
 	}, null, subscriptions);
 

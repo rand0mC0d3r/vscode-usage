@@ -22,7 +22,17 @@
         "command": "npm-component-usage.helloWorld",
         "title": "Hello World"
       }
-    ]
+    ],
+		"configuration": {
+      "title": "npm-component-usage",
+      "properties": {
+        "npm-component-usage.includedFolders": {
+          "type": "string",
+          "default": "src/**/*",
+          "description": "Specifies the folder path containing the tsserver and lib*.d.ts files to use."
+        }
+      }
+		}
   },
   "scripts": {
     "lint": "eslint .",

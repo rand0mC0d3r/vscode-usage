@@ -1,42 +1,45 @@
 {
   "name": "npm-component-usage",
-	"displayName": "npm-component-usage",
-	"description": "Finds out in react projects if the Component is abandoned or not",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.64.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        "onCommand:npm-component-usage.helloWorld",
-				"onLanguage:typescript",
-				"onLanguage:javascript"
-	],
-	"main": "./extension.js",
-	"contributes": {
-		"commands": [{
-            "command": "npm-component-usage.helloWorld",
-            "title": "Hello World"
-
-		}]
-	},
-	"scripts": {
-		"lint": "eslint .",
-		"pretest": "npm run lint",
-		"test": "node ./test/runTest.js"
-	},
-	"devDependencies": {
-        "@types/vscode": "^1.64.0",
-        "@types/glob": "^7.2.0",
-        "@types/mocha": "^9.1.0",
-        "@types/node": "16.x",
-        "eslint": "^8.9.0",
-        "glob": "^7.2.0",
-        "mocha": "^9.2.1",
-        "typescript": "^4.5.5",
-        "@vscode/test-electron": "^2.1.2"
-    }
-
+	"author": "grumpy panda",
+  "displayName": "npm-component-usage",
+  "description": "Finds out in react projects if the Component is abandoned or not",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.64.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:npm-component-usage.helloWorld",
+    "onLanguage:typescript",
+    "onLanguage:javascript"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "npm-component-usage.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js",
+		"package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.64.0",
+    "@vscode/test-electron": "^2.1.2",
+    "eslint": "^8.9.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.1",
+    "typescript": "^4.5.5",
+    "vsce": "^2.6.7"
+  }
 }
